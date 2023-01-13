@@ -71,7 +71,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Buildings costs` (
   `id` INT NOT NULL,
   `cost_per_square_meter` INT NULL,
   `permit_cost` INT NULL,
-  `Buildings costscol` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
