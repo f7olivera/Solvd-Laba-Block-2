@@ -93,19 +93,19 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`Buildings` (
   `id` INT NOT NULL,
   `building_cost_id` INT NOT NULL,
-  `buildnig_timeline_id` INT NOT NULL,
+  `building_timeline_id` INT NOT NULL,
   `name` VARCHAR(45) NULL,
   `type` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_Buildings_Buildings costs1_idx` (`building_cost_id` ASC) VISIBLE,
-  INDEX `fk_Buildings_Buildings timelines1_idx` (`buildnig_timeline_id` ASC) VISIBLE,
+  INDEX `fk_Buildings_Buildings timelines1_idx` (`building_timeline_id` ASC) VISIBLE,
   CONSTRAINT `fk_Buildings_Buildings costs1`
     FOREIGN KEY (`building_cost_id`)
     REFERENCES `mydb`.`Buildings costs` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Buildings_Buildings timelines1`
-    FOREIGN KEY (`buildnig_timeline_id`)
+    FOREIGN KEY (`building_timeline_id`)
     REFERENCES `mydb`.`Buildings timelines` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
