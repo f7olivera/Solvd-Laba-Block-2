@@ -39,7 +39,7 @@ public class PersonDAO implements IPersonDAO {
     @Override
     public Person find(long id) {
         try {
-            String query = "SELECT * FROM Persons WHERE id = ?";
+            String query = "SELECT * FROM Persons WHERE national_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
