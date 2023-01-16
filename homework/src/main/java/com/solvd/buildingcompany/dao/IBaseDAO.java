@@ -7,7 +7,7 @@ public interface IBaseDAO<T> {
 
     T get(long id);
 
-    void update(T t);
+    T update(T t);
 
     void delete(long id);
 
