@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -38,6 +39,13 @@ public class PersonDAO implements IPersonDAO {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT FROM Persons WHERE id = ?");
             statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next())
+                return new Person(
+                        resultSet.getString("name"),
+                        resultSet.getInt("age"),
+                        resultSet.getInt("national_id")
+                );
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
         }
