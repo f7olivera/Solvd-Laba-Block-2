@@ -1,7 +1,7 @@
-package com.solvd.buildingcompany.mysql;
+package com.solvd.buildingcompany.dao.mysql;
 
 import com.solvd.buildingcompany.dao.IPersonDAO;
-import com.solvd.buildingcompany.people.Person;
+import com.solvd.buildingcompany.models.people.Person;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonDAO implements IPersonDAO {
+public class PersonDAO extends MySQLDAO implements IPersonDAO {
     private final static Logger LOGGER = LogManager.getLogger(PersonDAO.class);
     private final Connection connection;
 
@@ -37,7 +37,7 @@ public class PersonDAO implements IPersonDAO {
     }
 
     @Override
-    public Person find(long id) {
+    public Person get(long id) {
         LOGGER.info("Finding person by id " + id + ".");
         try {
             String query = "SELECT * FROM Persons WHERE national_id = ?";

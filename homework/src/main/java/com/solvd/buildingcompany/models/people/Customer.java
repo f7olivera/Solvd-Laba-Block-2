@@ -1,6 +1,6 @@
-package com.solvd.buildingcompany.people;
+package com.solvd.buildingcompany.models.people;
 
-import com.solvd.buildingcompany.exceptions.NegativeAmountException;
+import com.solvd.buildingcompany.models.exceptions.NegativeAmountException;
 
 public final class Customer extends Person {
     private int budget;

@@ -1,4 +1,4 @@
-package com.solvd.buildingcompany.exceptions;
+package com.solvd.buildingcompany.models.exceptions;
 
 public class NegativeAmountException extends Exception {
     public NegativeAmountException(String errorMessage) {

@@ -1,4 +1,4 @@
-package com.solvd.buildingcompany.people;
+package com.solvd.buildingcompany.models.people;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

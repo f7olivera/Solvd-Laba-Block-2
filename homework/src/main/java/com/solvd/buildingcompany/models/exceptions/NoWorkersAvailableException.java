@@ -1,4 +1,4 @@
-package com.solvd.buildingcompany.exceptions;
+package com.solvd.buildingcompany.models.exceptions;
 
 public class NoWorkersAvailableException extends RuntimeException {
     public NoWorkersAvailableException(String errorMessage) {

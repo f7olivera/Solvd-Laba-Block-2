@@ -1,4 +1,4 @@
-package com.solvd.buildingcompany.people;
+package com.solvd.buildingcompany.models.people;
 
 public class Person {
     private String name;

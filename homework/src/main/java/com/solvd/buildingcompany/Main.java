@@ -1,8 +1,8 @@
 package com.solvd.buildingcompany;
 
 import com.solvd.buildingcompany.dao.IPersonDAO;
-import com.solvd.buildingcompany.mysql.PersonDAO;
-import com.solvd.buildingcompany.people.Person;
+import com.solvd.buildingcompany.dao.mysql.PersonDAO;
+import com.solvd.buildingcompany.models.people.Person;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
