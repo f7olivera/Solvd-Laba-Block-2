@@ -23,7 +23,8 @@ public class PersonDAO implements IPersonDAO {
     @Override
     public Person create(Person person) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO Persons (name, age, national_id) VALUES (?, ?, ?)");
+            String sql = "INSERT INTO Persons (name, age, national_id) VALUES (?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, person.getName());
             statement.setInt(2, person.getAge());
             statement.setInt(3, person.getId());
@@ -37,7 +38,8 @@ public class PersonDAO implements IPersonDAO {
     @Override
     public Person find(long id) {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT FROM Persons WHERE id = ?");
+            String sql = "SELECT FROM Persons WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next())
