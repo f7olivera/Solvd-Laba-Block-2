@@ -11,4 +11,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class PersonDAO implements IPersonDAO {
+    private final static Logger LOGGER = LogManager.getLogger(PersonDAO.class);
+
+    private final Connection connection;
+
+    PersonDAO(Connection connection) {
+        this.connection = connection;
+    }
 }
