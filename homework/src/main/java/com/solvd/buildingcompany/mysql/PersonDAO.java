@@ -14,7 +14,6 @@ import java.util.List;
 
 public class PersonDAO implements IPersonDAO {
     private final static Logger LOGGER = LogManager.getLogger(PersonDAO.class);
-
     private final Connection connection;
 
     public PersonDAO(Connection connection) {

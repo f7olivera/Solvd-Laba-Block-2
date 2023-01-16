@@ -14,6 +14,7 @@ public class Main {
     private final static Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) throws SQLException {
+        LOGGER.info("Starting program.");
         try (BasicDataSource dataSource = new BasicDataSource()) {
             dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
             dataSource.setUrl("jdbc:mysql://localhost:3306/Building_Company");
