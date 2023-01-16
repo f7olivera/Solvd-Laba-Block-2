@@ -5,7 +5,7 @@ import java.util.List;
 public interface IBaseDAO<T> {
     T create(T t);
 
-    T find(long id);
+    T get(long id);
 
     void update(T t);
 

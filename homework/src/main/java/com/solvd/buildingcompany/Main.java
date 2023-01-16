@@ -28,7 +28,7 @@ public class Main {
             Person person = new Person("John Doe", 34, 1245);
             personDAO.create(person);
 
-            LOGGER.info("Person found:\n" + personDAO.find(person.getId()));
+            LOGGER.info("Person found:\n" + personDAO.get(person.getId()));
 
             // String query = "select COF_NAME, SUP_ID, PRICE, SALES, TOTAL from COFFEES";
             // try (Statement statement = connection.createStatement()) {
