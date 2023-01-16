@@ -56,7 +56,17 @@ public class PersonDAO implements IPersonDAO {
 
     @Override
     public void update(Person person) {
-
+        try {
+            String sql = "UPDATE Persons SET name = ?, age = ?, national_id = ?, WHERE national_id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, person.getName());
+            statement.setInt(2, person.getAge());
+            statement.setInt(3, person.getId());
+            statement.setInt(4, person.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+        }
     }
 
     @Override
