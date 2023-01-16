@@ -1,8 +1,8 @@
 package com.solvd.buildingcompany;
 
-import com.solvd.buildingcompany.dao.IPersonDAO;
 import com.solvd.buildingcompany.dao.mysql.PersonDAO;
 import com.solvd.buildingcompany.models.people.Person;
+import com.solvd.buildingcompany.services.MySQLService;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,25 +35,11 @@ public class Main {
 
             Connection connection = dataSource.getConnection();
 
-            IPersonDAO personDAO = new PersonDAO(connection);
             Person person = new Person("John Doe", 34, 1245);
-            personDAO.create(person);
+            MySQLService<Person> mySQLService = new MySQLService<>(new PersonDAO(connection));
+            mySQLService.create(person);
 
-            LOGGER.info("Person found:\n" + personDAO.get(person.getId()));
-
-            // String query = "select COF_NAME, SUP_ID, PRICE, SALES, TOTAL from COFFEES";
-            // try (Statement statement = connection.createStatement()) {
-            //     ResultSet rs = statement.executeQuery(query);
-            //     while (rs.next()) {
-            //         String coffeeName = rs.getString("COF_NAME");
-            //         int supplierID = rs.getInt("SUP_ID");
-            //         float price = rs.getFloat("PRICE");
-            //         int sales = rs.getInt("SALES");
-            //         int total = rs.getInt("TOTAL");
-            //         System.out.println(coffeeName + ", " + supplierID + ", " + price +
-            //                 ", " + sales + ", " + total);
-            //     }
-            // }
+            LOGGER.info("Person found:\n" + mySQLService.get(person.getId()));
         }
     }
 }
