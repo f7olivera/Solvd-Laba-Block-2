@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Worker extends Person implements Comparable<Worker> {
     private int employeeId;
+    private String position;
     private int salary;
     protected final static Logger LOGGER = LogManager.getLogger(Worker.class);
 
@@ -47,6 +48,14 @@ public class Worker extends Person implements Comparable<Worker> {
 
     void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public int getSalary() {
