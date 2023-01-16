@@ -17,7 +17,7 @@ public class PersonDAO implements IPersonDAO {
 
     private final Connection connection;
 
-    PersonDAO(Connection connection) {
+    public PersonDAO(Connection connection) {
         this.connection = connection;
     }
 
