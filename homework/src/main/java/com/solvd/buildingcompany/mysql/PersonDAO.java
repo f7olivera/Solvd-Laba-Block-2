@@ -23,6 +23,7 @@ public class PersonDAO implements IPersonDAO {
 
     @Override
     public Person create(Person person) {
+        LOGGER.info("Creating person with id " + person.getId() + ".");
         try {
             String sql = "INSERT INTO Persons (name, age, national_id) VALUES (?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -38,6 +39,7 @@ public class PersonDAO implements IPersonDAO {
 
     @Override
     public Person find(long id) {
+        LOGGER.info("Finding person by id " + id + ".");
         try {
             String query = "SELECT * FROM Persons WHERE national_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
@@ -57,6 +59,7 @@ public class PersonDAO implements IPersonDAO {
 
     @Override
     public void update(Person person) {
+        LOGGER.info("Updating person with id " + person.getId() + ".");
         try {
             String query = "UPDATE Persons SET name = ?, age = ?, national_id = ? WHERE national_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
@@ -72,6 +75,7 @@ public class PersonDAO implements IPersonDAO {
 
     @Override
     public void delete(long id) {
+        LOGGER.info("Deleting person with id " + id + ".");
         try {
             String query = "DELETE FROM Persons WHERE national_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
@@ -84,6 +88,7 @@ public class PersonDAO implements IPersonDAO {
 
     @Override
     public List<Person> findAll() {
+        LOGGER.info("Finding all persons.");
         List<Person> persons = new ArrayList<>();
         try {
             String query = "SELECT * FROM Persons";
@@ -103,6 +108,7 @@ public class PersonDAO implements IPersonDAO {
 
     @Override
     public int count() {
+        LOGGER.info("Counting persons.");
         try {
             String query = "SELECT COUNT(*) FROM Persons";
             PreparedStatement statement = connection.prepareStatement(query);
