@@ -18,4 +18,49 @@ public class PersonDAO implements IPersonDAO {
     PersonDAO(Connection connection) {
         this.connection = connection;
     }
+
+    @Override
+    public Person create(Person person) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO Persons (name, age, national_id) VALUES (?, ?, ?)");
+            statement.setString(1, person.getName());
+            statement.setInt(2, person.getAge());
+            statement.setInt(3, person.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+        }
+        return person;
+    }
+
+    @Override
+    public Person find(long id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT FROM Persons WHERE id = ?");
+            statement.setLong(1, id);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public void update(Person person) {
+
+    }
+
+    @Override
+    public void delete(long id) {
+
+    }
+
+    @Override
+    public List<Person> findAll() {
+        return null;
+    }
+
+    @Override
+    public int count() {
+        return 0;
+    }
 }
