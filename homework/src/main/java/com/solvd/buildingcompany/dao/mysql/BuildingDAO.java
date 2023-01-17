@@ -1,10 +1,10 @@
 package com.solvd.buildingcompany.dao.mysql;
 
 import com.solvd.buildingcompany.dao.IBuildingDAO;
-import com.solvd.buildingcompany.models.buildings.Building;
-import com.solvd.buildingcompany.models.buildings.BuildingCategory;
-import com.solvd.buildingcompany.models.buildings.ConstructionDetails;
-import com.solvd.buildingcompany.models.company.Item;
+import com.solvd.buildingcompany.models.building.Building;
+import com.solvd.buildingcompany.models.building.BuildingCategory;
+import com.solvd.buildingcompany.models.building.ConstructionDetails;
+import com.solvd.buildingcompany.models.construction.Item;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,8 +17,8 @@ import java.util.HashSet;
 import java.util.List;
 
 public class BuildingDAO extends MySQLDAO implements IBuildingDAO {
-    private final static Logger LOGGER = LogManager.getLogger(BuildingDAO.class);
     private final Connection connection;
+    private final static Logger LOGGER = LogManager.getLogger(BuildingDAO.class);
 
     public BuildingDAO(Connection connection) {
         this.connection = connection;

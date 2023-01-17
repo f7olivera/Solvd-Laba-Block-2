@@ -1,8 +1,8 @@
 package com.solvd.buildingcompany.dao;
 
-import com.solvd.buildingcompany.models.buildings.Building;
-import com.solvd.buildingcompany.models.buildings.BuildingCategory;
-import com.solvd.buildingcompany.models.buildings.ConstructionDetails;
+import com.solvd.buildingcompany.models.building.Building;
+import com.solvd.buildingcompany.models.building.BuildingCategory;
+import com.solvd.buildingcompany.models.building.ConstructionDetails;
 
 import java.util.List;
 
