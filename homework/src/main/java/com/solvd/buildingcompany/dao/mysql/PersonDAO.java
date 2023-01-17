@@ -26,6 +26,7 @@ public class PersonDAO extends MySQLDAO implements IPersonDAO {
         try {
             String sql = "INSERT INTO Persons (name, age, national_id) VALUES (?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
+
             statement.setString(1, person.getName());
             statement.setInt(2, person.getAge());
             statement.setInt(3, person.getId());
@@ -37,11 +38,12 @@ public class PersonDAO extends MySQLDAO implements IPersonDAO {
     }
 
     @Override
-    public Person get(long id) {
+    public Person get(int id) {
         LOGGER.info("Finding person by id " + id + ".");
         try {
             String query = "SELECT * FROM Persons WHERE national_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
+
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next())
@@ -62,6 +64,7 @@ public class PersonDAO extends MySQLDAO implements IPersonDAO {
         try {
             String query = "UPDATE Persons SET name = ?, age = ?, national_id = ? WHERE national_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
+
             statement.setString(1, person.getName());
             statement.setInt(2, person.getAge());
             statement.setInt(3, person.getId());
@@ -74,11 +77,12 @@ public class PersonDAO extends MySQLDAO implements IPersonDAO {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(int id) {
         LOGGER.info("Deleting person with id " + id + ".");
         try {
             String query = "DELETE FROM Persons WHERE national_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
+
             statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -93,6 +97,7 @@ public class PersonDAO extends MySQLDAO implements IPersonDAO {
         try {
             String query = "SELECT * FROM Persons";
             PreparedStatement statement = connection.prepareStatement(query);
+
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next())
                 persons.add(new Person(
@@ -112,6 +117,7 @@ public class PersonDAO extends MySQLDAO implements IPersonDAO {
         try {
             String query = "SELECT COUNT(*) FROM Persons";
             PreparedStatement statement = connection.prepareStatement(query);
+
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next())
                 return resultSet.getInt(1);

@@ -5,11 +5,11 @@ import java.util.List;
 public interface IBaseDAO<T> {
     T create(T t);
 
-    T get(long id);
+    T get(int id);
 
     T update(T t);
 
-    void delete(long id);
+    void delete(int id);
 
     List<T> findAll();
 
