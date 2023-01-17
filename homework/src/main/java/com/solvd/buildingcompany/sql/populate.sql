@@ -39,11 +39,11 @@ INSERT INTO Building_Costs (cost_per_square_meter, permit_cost)
     VALUES (50, 1000), (150, 3500), (300, 30000);
 INSERT INTO Building_Timelines (construction_time, permit_process_time)
     VALUES (30, 30), (75, 50), (120, 80);
-INSERT INTO Building_Types (capacity, floors, category)
-    VALUES (10, 1, 'Residential'), (200, 2, 'Residential'),
-           (50, 1, 'Commercial'), (300, 2, 'Commercial'), (1000, 5, 'Commercial'),
-           (600, 2, 'Industrial'), (1200, 3, 'Industrial'), (3000, 3, 'Industrial'),
-           (300, 9, 'Office building'), (1200, 10, 'Office building');
+INSERT INTO Building_Types (capacity, floors, category, square_meters)
+    VALUES (10, 1, 'Residential', 50), (200, 2, 'Residential', 500),
+           (50, 1, 'Commercial', 50), (300, 2, 'Commercial', 800), (1000, 5, 'Commercial', 2500),
+           (600, 2, 'Industrial', 1500), (1200, 3, 'Industrial', 3000), (3000, 3, 'Industrial', 5000),
+           (300, 9, 'Office building', 500), (1200, 10, 'Office building', 900);
 INSERT INTO Buildings (name, building_cost_id, building_timeline_id, building_type_id)
     VALUES ('Family House', 1, 1, 1), ('Apartment Building', 2, 2, 2),
            ('Small Store', 1, 1, 3), ('Medium Store', 2, 1, 4), ('Big Store', 3, 3, 5),
