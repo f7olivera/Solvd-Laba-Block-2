@@ -15,6 +15,7 @@ INSERT INTO Workers (person_id, position, salary)
            (3, 'Construction worker', 600),
            (4, 'Construction worker', 600),
            (5, 'Construction worker', 400),
+           (6, 'Construction worker', 450),
            (7, 'Construction worker', 400),
            (8, 'Construction worker', 500),
            (9, 'Architect', 5000),
@@ -64,7 +65,7 @@ VALUES (123, 1, 1), (12, 3, 1), (456, 2, 1), (78, 6, 1), (90, 9, 1),
 INSERT INTO Inventory (available, item_id)
     VALUES (500, 1), (1000, 2), (2000, 3), (3000, 4), (4000, 5), (5000, 6), (1000, 7),
            (3000, 8), (2000, 9), (3000, 10), (4000, 11), (1000, 12), (2000, 13),
-           (3000, 14), (5000, 15), (1000, 16), (3000, 17), (2000, 18), (3000, 19);
+           (3000, 14), (5000, 15), (1000, 16), (3000, 17), (2000, 18);
 
 -- Populate Constructions
 INSERT INTO Constructions (address, status, start_date, end_date)
@@ -75,7 +76,7 @@ INSERT INTO Constructions (address, status, start_date, end_date)
 
 -- Populate Orders
 INSERT INTO Orders (is_paid, customer_id, building_id, construction_id)
-    VALUES (0, 1, 1, 1), (0, 2, 2, 2), (0, 3, 3, 4), (0, 3, 4, 6);
+    VALUES (0, 1, 1, 1), (0, 2, 2, 2), (0, 3, 4, 3), (0, 3, 6, 4);
 
 -- Populate Construction_Items
 INSERT INTO Construction_Items (amount, item_id, construction_id)
