@@ -68,7 +68,7 @@ INSERT INTO Inventory (available, item_id)
            (3000, 14), (5000, 15), (1000, 16), (3000, 17), (2000, 18);
 
 -- Populate Constructions
-INSERT INTO Constructions (address, status, start_date, end_date)
+INSERT INTO Constructions (address, state, start_date, end_date)
     VALUES ('1234 Elm St, Anytown USA', 'In progress', '2022-01-01', '2022-01-31'),
            ('578 Oak Ave, Randomville USA', 'In progress', '2022-01-01', '2022-03-15'),
            ('911 Pine Blvd, Buildertown USA', 'In progress', '2022-01-01', '2022-01-31'),
