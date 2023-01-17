@@ -1,6 +1,6 @@
-package com.solvd.buildingcompany.models.buildings;
+package com.solvd.buildingcompany.models.building;
 
-import com.solvd.buildingcompany.models.company.Item;
+import com.solvd.buildingcompany.models.construction.Item;
 
 import java.util.Set;
 

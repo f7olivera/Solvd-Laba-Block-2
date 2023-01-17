@@ -1,4 +1,4 @@
-package com.solvd.buildingcompany.models.buildings;
+package com.solvd.buildingcompany.models.building;
 
 public enum BuildingCategory {
     RESIDENTIAL,
@@ -8,7 +8,6 @@ public enum BuildingCategory {
 
     @Override
     public String toString() {
-        // capitalize first letter
         return name().charAt(0) + name().substring(1).toLowerCase();
     }
 }
