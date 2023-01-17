@@ -2,7 +2,6 @@ package com.solvd.buildingcompany;
 
 import com.solvd.buildingcompany.dao.mysql.PersonDAO;
 import com.solvd.buildingcompany.models.people.Person;
-import com.solvd.buildingcompany.services.MySQLService;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -36,14 +34,12 @@ public class Main {
             dataSource.setPassword(properties.getProperty("password"));
             dataSource.setInitialSize(5);
 
-            Connection connection = dataSource.getConnection();
-
             Person person = new Person("John Doe", 34, 1245);
             LOGGER.info("Creating person with id " + person.getId() + ".");
-            MySQLService<Person> mySQLService = new MySQLService<>(new PersonDAO(connection));
-            mySQLService.create(person);
+            PersonDAO personDAO = new PersonDAO(dataSource.getConnection());
+            personDAO.create(person);
 
-            LOGGER.info("Person found:\n" + mySQLService.get(person.getId()));
+            LOGGER.info("Person found:\n" + personDAO.get(person.getId()));
         }
     }
 }
