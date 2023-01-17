@@ -21,12 +21,15 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         LOGGER.info("Starting program.");
         try (BasicDataSource dataSource = new BasicDataSource()) {
+            LOGGER.info("Reading properties file.");
             Properties properties = new Properties();
             try (InputStream inputStream = Files.newInputStream(Paths.get("src/main/resources/mysql.db.properties"))) {
                 properties.load(inputStream);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
+            LOGGER.info("Creating connection pool to MySQL database");
             dataSource.setDriverClassName(properties.getProperty("driver"));
             dataSource.setUrl(properties.getProperty("base_url") + "Building_Company");
             dataSource.setUsername(properties.getProperty("username"));
@@ -36,6 +39,7 @@ public class Main {
             Connection connection = dataSource.getConnection();
 
             Person person = new Person("John Doe", 34, 1245);
+            LOGGER.info("Creating person with id " + person.getId() + ".");
             MySQLService<Person> mySQLService = new MySQLService<>(new PersonDAO(connection));
             mySQLService.create(person);
 
