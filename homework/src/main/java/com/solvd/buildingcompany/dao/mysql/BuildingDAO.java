@@ -59,7 +59,7 @@ public class BuildingDAO extends MySQLDAO implements IBuildingDAO {
 
     @Override
     public Building update(Building building) {
-        LOGGER.info("Updating building with id " + person.getId() + ".");
+        LOGGER.info("Updating building " + building.getName() + ".");
         // TODO
         return building;
     }
@@ -140,7 +140,7 @@ public class BuildingDAO extends MySQLDAO implements IBuildingDAO {
                         resultSet.getInt("permit_cost"),
                         resultSet.getInt("construction_time"),
                         resultSet.getInt("permit_process_time"),
-                        resultSet.getInt("square_meters")
+                        resultSet.getInt("square_meters"),
                         resultSet.getInt("capacity"),
                         resultSet.getInt("floors"),
                         BuildingCategory.valueOf(resultSet.getString("category")),
@@ -150,5 +150,6 @@ public class BuildingDAO extends MySQLDAO implements IBuildingDAO {
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
         }
+        return null;
     }
 }
