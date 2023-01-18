@@ -131,9 +131,12 @@ public class BuildingDAO extends MySQLDAO implements IBuildingDAO {
             String query = "SELECT * FROM buildings\n" +
                     "JOIN building_costs ON buildings.building_cost_id = building_costs.id\n" +
                     "JOIN building_timelines ON buildings.building_timeline_id = building_timelines.id\n" +
-                    "JOIN building_types ON buildings.building_type_id = building_types.id;" + buildingId;
-            PreparedStatement costStatement = connection.prepareStatement(query);
-            ResultSet resultSet = costStatement.executeQuery();
+                    "JOIN building_types ON buildings.building_type_id = building_types.id" +
+                    "WHERE buildings.id = ?;";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, buildingId);
+
+            ResultSet resultSet = statement.executeQuery();
             if (resultSet.next())
                 return new ConstructionDetails(
                         resultSet.getInt("cost_per_square_meter"),
