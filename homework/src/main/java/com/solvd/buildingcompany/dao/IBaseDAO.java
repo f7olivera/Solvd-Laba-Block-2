@@ -2,7 +2,7 @@ package com.solvd.buildingcompany.dao;
 
 import java.util.List;
 
-public interface IBaseDAO<T> {
+public interface IBaseDAO<T> extends AutoCloseable {
     T create(T t);
 
     T get(int id);
