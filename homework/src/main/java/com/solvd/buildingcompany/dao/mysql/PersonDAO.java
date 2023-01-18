@@ -5,19 +5,18 @@ import com.solvd.buildingcompany.models.people.Person;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PersonDAO extends MySQLDAO implements IPersonDAO {
     private final static Logger LOGGER = LogManager.getLogger(PersonDAO.class);
-    private final Connection connection;
 
-    public PersonDAO(Connection connection) {
-        this.connection = connection;
+    public PersonDAO() throws SQLException {
+        this.connection = ConnectionPool.getInstance().getConnection();
     }
 
     @Override
@@ -96,9 +95,9 @@ public class PersonDAO extends MySQLDAO implements IPersonDAO {
         List<Person> persons = new ArrayList<>();
         try {
             String query = "SELECT * FROM Persons";
-            PreparedStatement statement = connection.prepareStatement(query);
+            Statement statement = connection.createStatement();
 
-            ResultSet resultSet = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next())
                 persons.add(new Person(
                         resultSet.getString("name"),
@@ -116,9 +115,9 @@ public class PersonDAO extends MySQLDAO implements IPersonDAO {
         LOGGER.info("Counting persons.");
         try {
             String query = "SELECT COUNT(*) FROM Persons";
-            PreparedStatement statement = connection.prepareStatement(query);
+            Statement statement = connection.createStatement();
 
-            ResultSet resultSet = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next())
                 return resultSet.getInt(1);
         } catch (SQLException e) {
