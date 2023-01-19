@@ -51,7 +51,7 @@ public class Order {
 
     public void pay() {
         try {
-            customer.spend(building.getCost());
+            customer.spend(building.getTotalCost());
             this.is_paid = true;
         } catch (NegativeAmountException e) {
             LOGGER.info(e.getMessage());
