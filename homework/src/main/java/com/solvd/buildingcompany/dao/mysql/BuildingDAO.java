@@ -125,34 +125,4 @@ public class BuildingDAO extends MySQLDAO implements IBuildingDAO {
     public int getBuildingTypeId(int capacity, int floors, BuildingCategory category, int squareMeters) {
         return 0;
     }
-
-    public ConstructionDetails getConstructionDetails(int buildingId) {
-        try {
-            String query = "SELECT * FROM buildings\n" +
-                    "JOIN building_costs ON buildings.building_cost_id = building_costs.id\n" +
-                    "JOIN building_timelines ON buildings.building_timeline_id = building_timelines.id\n" +
-                    "JOIN building_types ON buildings.building_type_id = building_types.id" +
-                    "WHERE buildings.id = ?;";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, buildingId);
-
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next())
-                return new ConstructionDetails(
-                        resultSet.getInt("cost_per_square_meter"),
-                        resultSet.getInt("permit_cost"),
-                        resultSet.getInt("construction_time"),
-                        resultSet.getInt("permit_process_time"),
-                        resultSet.getInt("square_meters"),
-                        resultSet.getInt("capacity"),
-                        resultSet.getInt("floors"),
-                        BuildingCategory.valueOf(resultSet.getString("category")),
-                        // TODO: Get items from building_items table
-                        new HashSet<Item>()
-                );
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-        }
-        return null;
-    }
 }
