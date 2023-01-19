@@ -16,113 +16,94 @@ public class PersonDAO extends MySQLDAO implements IPersonDAO {
     private final static Logger LOGGER = LogManager.getLogger(PersonDAO.class);
 
     public PersonDAO() throws SQLException {
-        this.connection = ConnectionPool.getInstance().getConnection();
+        super();
     }
 
     @Override
-    public Person create(Person person) {
+    public Person create(Person person) throws SQLException {
         LOGGER.info("Creating person with id " + person.getId() + ".");
-        try {
-            String sql = "INSERT INTO Persons (name, age, national_id) VALUES (?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
+        String sql = "INSERT INTO Persons (name, age, national_id) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE id = id";
+        PreparedStatement statement = connection.prepareStatement(sql);
 
-            statement.setString(1, person.getName());
-            statement.setInt(2, person.getAge());
-            statement.setInt(3, person.getId());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-        }
+        statement.setString(1, person.getName());
+        statement.setInt(2, person.getAge());
+        statement.setInt(3, person.getId());
+        statement.executeUpdate();
+
         return person;
     }
 
     @Override
-    public Person get(int id) {
+    public Person get(int id) throws SQLException {
         LOGGER.info("Finding person by id " + id + ".");
-        try {
-            String query = "SELECT * FROM Persons WHERE national_id = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
+        String query = "SELECT * FROM Persons WHERE national_id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
 
-            statement.setLong(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next())
-                return new Person(
-                        resultSet.getString("name"),
-                        resultSet.getInt("age"),
-                        resultSet.getInt("national_id")
-                );
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-        }
+        statement.setLong(1, id);
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next())
+            return new Person(
+                    resultSet.getString("name"),
+                    resultSet.getInt("age"),
+                    resultSet.getInt("national_id")
+            );
+
         return null;
     }
 
     @Override
-    public Person update(Person person) {
+    public Person update(Person person) throws SQLException {
         LOGGER.info("Updating person with id " + person.getId() + ".");
-        try {
-            String query = "UPDATE Persons SET name = ?, age = ?, national_id = ? WHERE national_id = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
+        String query = "UPDATE Persons SET name = ?, age = ?, national_id = ? WHERE national_id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
 
-            statement.setString(1, person.getName());
-            statement.setInt(2, person.getAge());
-            statement.setInt(3, person.getId());
-            statement.setInt(4, person.getId());
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-        }
+        statement.setString(1, person.getName());
+        statement.setInt(2, person.getAge());
+        statement.setInt(3, person.getId());
+        statement.setInt(4, person.getId());
+        statement.executeUpdate();
+
         return person;
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws SQLException {
         LOGGER.info("Deleting person with id " + id + ".");
-        try {
-            String query = "DELETE FROM Persons WHERE national_id = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
+        String query = "DELETE FROM Persons WHERE national_id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
 
-            statement.setLong(1, id);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-        }
+        statement.setLong(1, id);
+        statement.executeUpdate();
     }
 
     @Override
-    public List<Person> findAll() {
+    public List<Person> findAll() throws SQLException {
         LOGGER.info("Finding all persons.");
         List<Person> persons = new ArrayList<>();
-        try {
-            String query = "SELECT * FROM Persons";
-            Statement statement = connection.createStatement();
+        String query = "SELECT * FROM Persons";
+        Statement statement = connection.createStatement();
 
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next())
-                persons.add(new Person(
-                        resultSet.getString("name"),
-                        resultSet.getInt("age"),
-                        resultSet.getInt("national_id")
-                ));
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-        }
+        ResultSet resultSet = statement.executeQuery(query);
+        while (resultSet.next())
+            persons.add(new Person(
+                    resultSet.getString("name"),
+                    resultSet.getInt("age"),
+                    resultSet.getInt("national_id")
+            ));
+
         return persons;
     }
 
     @Override
-    public int count() {
+    public int count() throws SQLException {
         LOGGER.info("Counting persons.");
-        try {
-            String query = "SELECT COUNT(*) FROM Persons";
-            Statement statement = connection.createStatement();
+        String query = "SELECT COUNT(*) FROM Persons";
+        Statement statement = connection.createStatement();
 
-            ResultSet resultSet = statement.executeQuery(query);
-            if (resultSet.next())
-                return resultSet.getInt(1);
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-        }
+        ResultSet resultSet = statement.executeQuery(query);
+        if (resultSet.next())
+            return resultSet.getInt(1);
+
         return 0;
     }
 }
