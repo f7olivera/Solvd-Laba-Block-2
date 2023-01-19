@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildingCompany name="Blue Horizon Constructions">
+    <orders>
+        <order isPaid="true">
+            <customer name="Matthew Williams" age="18" id="2468" budget="12000"/>
+            <building name="Family House">
+                <buildingCost costPerSquareMeter="100" permitCost="3000"/>
+                <buildingType capacity="10" floors="1" category="Residential" squareMeters="100"/>
+                <buildingTimeline constructionTime="25" permitProcessTime="15"/>
+                <requiredItems>
+                    <item name="Bricks" quantity="1000"/>
+                    <item name="Wood" quantity="100"/>
+                    <item name="Cement" quantity="100"/>
+                    <item name="Sand" quantity="100"/>
+                </requiredItems>
+            </building>
+            <construction address="123 Main Street, Somewhere USA"
+                          state="In progress" startDate="2022-01-01" endDate="2022-01-30">
+                <workers>
+                    <worker name="John Doe" age="25" id="1312" position="Construction worker" salary="500"/>
+                    <worker name="Peter Oliver" age="35" id="2221" position="Construction worker" salary="800"/>
+                    <worker name="Peter Smith" age="35" id="1245" position="Construction worker" salary="600"/>
+                    <worker name="Andrew Davis" age="50" id="3456" position="Architect" salary="5000"/>
+                    <worker name="Daniel Taylor" age="40" id="4567" position="Engineer" salary="3000"/>
+                </workers>
+                <items>
+                    <item name="Bricks" quantity="1000" price="5"/>
+                    <item name="Wood" quantity="100" price="30"/>
+                    <item name="Cement" quantity="100" price="20"/>
+                    <item name="Sand" quantity="100" price="25"/>
+                </items>
+            </construction>
+        </order>
+    </orders>
+    <workers>
+        <worker name="Frank Perry" age="42" id="5423" position="Construction worker" salary="400"/>
+        <worker name="Corey Willis" age="22" id="1236" position="Construction worker" salary="450"/>
+        <worker name="Jacob Smith" age="22" id="1235" position="Construction worker" salary="400"/>
+        <worker name="Joseph Miller" age="60" id="2345" position="Architect" salary="3000"/>
+        <worker name="Christopher Wilson" age="70" id="1234" position="Architect" salary="3600"/>
+        <worker name="Anthony Anderson" age="30" id="5678" position="Engineer" salary="4000"/>
+        <worker name="Thomas Thomas" age="30" id="1900" position="Engineer" salary="3000"/>
+    </workers>
+    <inventory>
+        <item name="Brick" quantity="1000"/>
+        <item name="Wood" quantity="1500"/>
+        <item name="Cement" quantity="3000"/>
+        <item name="Sand" quantity="2000"/>
+    </inventory>
+</buildingCompany>
