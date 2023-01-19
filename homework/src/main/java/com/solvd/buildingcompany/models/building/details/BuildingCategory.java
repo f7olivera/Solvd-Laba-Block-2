@@ -1,4 +1,4 @@
-package com.solvd.buildingcompany.models.building;
+package com.solvd.buildingcompany.models.building.details;
 
 public enum BuildingCategory {
     RESIDENTIAL,
