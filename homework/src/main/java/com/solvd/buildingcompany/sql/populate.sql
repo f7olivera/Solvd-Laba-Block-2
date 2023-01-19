@@ -44,13 +44,13 @@ INSERT INTO Building_Types (capacity, floors, category, square_meters)
     VALUES (10, 1, 'Residential', 50), (200, 2, 'Residential', 500),
            (50, 1, 'Commercial', 50), (300, 2, 'Commercial', 800), (1000, 5, 'Commercial', 2500),
            (600, 2, 'Industrial', 1500), (1200, 3, 'Industrial', 3000), (3000, 3, 'Industrial', 5000),
-           (300, 9, 'Office building', 500), (1200, 10, 'Office building', 900);
+           (300, 9, 'Office', 500), (1200, 10, 'Office', 900);
 INSERT INTO Buildings (name, building_cost_id, building_timeline_id, building_type_id)
     VALUES ('Family House', 1, 1, 1), ('Apartment Building', 2, 2, 2),
            ('Small Store', 1, 1, 3), ('Medium Store', 2, 1, 4), ('Big Store', 3, 3, 5),
            ('Industrial Complex', 2, 2, 6), ('Second Industrial Complex', 3, 3, 7),
-           ('Small Office Building', 2, 1, 9), ('Big Office Building', 3, 3, 10);
-INSERT INTO Required_Items (required_amount, item_id, building_id)
+           ('Small Office', 2, 1, 9), ('Big Office', 3, 3, 10);
+INSERT INTO Required_Items (required_quantity, item_id, building_id)
 VALUES (123, 1, 1), (12, 3, 1), (456, 2, 1), (78, 6, 1), (90, 9, 1),
        (31, 5, 2), (10, 1, 2), (20, 8, 2), (50, 7, 2), (100, 4, 2),
        (200, 11, 3), (300, 12, 3), (400, 13, 3), (500, 14, 3), (600, 15, 3),
@@ -79,7 +79,7 @@ INSERT INTO Orders (is_paid, customer_id, building_id, construction_id)
     VALUES (0, 1, 1, 1), (0, 2, 2, 2), (0, 3, 4, 3), (0, 3, 6, 4);
 
 -- Populate Construction_Items
-INSERT INTO Construction_Items (amount, item_id, construction_id)
+INSERT INTO Construction_Items (quantity, item_id, construction_id)
     VALUES (100, 1, 1), (200, 2, 1), (300, 3, 1), (400, 4, 1), (500, 5, 1),
            (600, 6, 1), (700, 7, 1), (800, 8, 1), (900, 9, 1), (1000, 10, 1),
            (200, 1, 2), (300, 2, 2), (400, 3, 2), (500, 4, 2), (600, 5, 2),
