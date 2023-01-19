@@ -1,6 +1,9 @@
 package com.solvd.buildingcompany.models.construction;
 
+import com.solvd.buildingcompany.models.people.Worker;
+
 import java.util.Date;
+import java.util.Map;
 import java.util.Set;
 
 public class Construction {
@@ -8,12 +11,13 @@ public class Construction {
     private ConstructionState state = ConstructionState.PLANNED;
     private Date startDate;
     private Date endDate;
-    private Set<Item> items;
+    private Set<Worker> workers;
+    private Map<Item, Integer> items;
 
-    public Construction(String address, Date startDate, Set<Item> items) {
+    public Construction(String address, Date startDate, Set<Worker> workers) {
         this.address = address;
         this.startDate = startDate;
-        this.items = items;
+        this.workers = workers;
     }
 
     public String getAddress() {
@@ -48,11 +52,15 @@ public class Construction {
         this.endDate = endDate;
     }
 
-    public Set<Item> getItems() {
+    public Map<Item, Integer> getItems() {
         return items;
     }
 
-    public void setItems(Set<Item> items) {
+    public void setItems(Map<Item, Integer> items) {
         this.items = items;
+    }
+
+    public void addItem(Item item, int amount) {
+        items.put(item, amount);
     }
 }
