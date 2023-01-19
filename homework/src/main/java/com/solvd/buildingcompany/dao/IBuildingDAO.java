@@ -1,8 +1,7 @@
 package com.solvd.buildingcompany.dao;
 
 import com.solvd.buildingcompany.models.building.Building;
-import com.solvd.buildingcompany.models.building.BuildingCategory;
-import com.solvd.buildingcompany.models.building.ConstructionDetails;
+import com.solvd.buildingcompany.models.building.details.BuildingCategory;
 
 import java.util.List;
 
@@ -10,8 +9,6 @@ public interface IBuildingDAO extends IBaseDAO<Building> {
     Building getByName(String name);
 
     List<Building> getByCategory(BuildingCategory category);
-
-    List<Building> getByDetails(ConstructionDetails details);
 
     int getBuildingCostId(int costPerSquareMeter, int permitCost);
 
