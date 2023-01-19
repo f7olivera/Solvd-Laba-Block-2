@@ -1,20 +1,30 @@
 package com.solvd.buildingcompany.models.building;
 
+import com.solvd.buildingcompany.models.building.details.BuildingCost;
+import com.solvd.buildingcompany.models.building.details.BuildingTimeline;
+import com.solvd.buildingcompany.models.building.details.BuildingType;
 import com.solvd.buildingcompany.models.construction.Item;
+
+import java.util.Set;
 
 public class Building {
     private String name;
-    private ConstructionDetails details;
+    private BuildingCost cost;
+    private BuildingTimeline timeline;
+    private BuildingType type;
+    private Set<Item> requiredItems;
 
-    public Building(String name, ConstructionDetails constructionDetails) {
+    public Building(String name, BuildingCost cost, BuildingTimeline timeline, BuildingType type) {
         this.name = name;
-        this.details = constructionDetails;
+        this.cost = cost;
+        this.timeline = timeline;
+        this.type = type;
     }
 
-    public int getCost() {
-        return details.getCostPerSquareMeter() * details.getSquareMeters()
-                + details.getPermitCost()
-                + details.getRequiredItems().stream().mapToInt(Item::getPrice).sum();
+    public int getTotalCost() {
+        return cost.getCostPerSquareMeter() * type.getSquareMeters()
+                + cost.getPermitCost()
+                + requiredItems.stream().mapToInt(Item::getPrice).sum();
     }
 
     public String getName() {
@@ -25,11 +35,35 @@ public class Building {
         this.name = name;
     }
 
-    public ConstructionDetails getDetails() {
-        return details;
+    public BuildingCost getCost() {
+        return cost;
     }
 
-    public void setDetails(ConstructionDetails details) {
-        this.details = details;
+    public void setCost(BuildingCost cost) {
+        this.cost = cost;
+    }
+
+    public BuildingTimeline getTimeline() {
+        return timeline;
+    }
+
+    public void setTimeline(BuildingTimeline timeline) {
+        this.timeline = timeline;
+    }
+
+    public BuildingType getType() {
+        return type;
+    }
+
+    public void setType(BuildingType type) {
+        this.type = type;
+    }
+
+    public Set<Item> getRequiredItems() {
+        return requiredItems;
+    }
+
+    public void setRequiredItems(Set<Item> requiredItems) {
+        this.requiredItems = requiredItems;
     }
 }
