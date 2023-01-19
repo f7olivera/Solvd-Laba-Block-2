@@ -56,6 +56,18 @@ public class Construction {
         return items;
     }
 
+    public Set<Worker> getWorkers() {
+        return workers;
+    }
+
+    public void setWorkers(Set<Worker> workers) {
+        this.workers = workers;
+    }
+
+    public void addWorker(Worker worker) {
+        workers.add(worker);
+    }
+
     public void setItems(Map<Item, Integer> items) {
         this.items = items;
     }
