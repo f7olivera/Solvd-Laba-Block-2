@@ -3,35 +3,31 @@ package com.solvd.buildingcompany.models.people;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Worker extends Person implements Comparable<Worker> {
-    private int employeeId;
+public class Worker extends Person {
     private String position;
     private int salary;
     protected final static Logger LOGGER = LogManager.getLogger(Worker.class);
 
-    public Worker(int employeeId) {
-        super();
-        this.employeeId = employeeId;
-    }
-
-    public Worker(int employeeId, int salary) {
-        super();
-        this.employeeId = employeeId;
+    public Worker(int id, int salary) {
+        super(id);
         this.salary = salary;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (this.getClass() != obj.getClass()) return false;
-        if (this.hashCode() != obj.hashCode()) return false;
-
-        return employeeId == ((Worker) obj).getEmployeeId();
+    public Worker(String name, int id, int salary) {
+        super(name, id);
+        this.salary = salary;
     }
 
-    @Override
-    public int hashCode() {
-        return employeeId;
+    public Worker(String name, int id, String position, int salary) {
+        super(name, id);
+        this.position = position;
+        this.salary = salary;
+    }
+
+    public Worker(String name, int age, int id, String position, int salary) {
+        super(name, age, id);
+        this.position = position;
+        this.salary = salary;
     }
 
     @Override
@@ -42,14 +38,6 @@ public class Worker extends Person implements Comparable<Worker> {
     /*
      * Getters and setters
      */
-    public int getEmployeeId() {
-        return this.employeeId;
-    }
-
-    void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
     public String getPosition() {
         return position;
     }
@@ -64,13 +52,5 @@ public class Worker extends Person implements Comparable<Worker> {
 
     public void setSalary(int salary) {
         this.salary = salary;
-    }
-
-    @Override
-    public int compareTo(Worker o) {
-        if (salary == o.salary)
-            return Integer.compare(employeeId, o.employeeId);
-
-        return Integer.compare(salary, o.salary);
     }
 }
